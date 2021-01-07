@@ -14,7 +14,7 @@ const schema = new Schema(
     name: { type: String, required: true },
     email: {
       type: String,
-      required: true,
+      required: [true],
       unique: [true, 'Email must be unique'],
     },
     password: { type: String, required: true },
