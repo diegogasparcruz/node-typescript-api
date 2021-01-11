@@ -42,7 +42,7 @@ describe('Users functional tests', () => {
       const response = await global.testRequest.post('/users').send(newUser);
 
       expect(response.status).toBe(409);
-      expect(response.body.error).toBe({
+      expect(response.body).toEqual({
         code: 409,
         error: 'User validation failed: email: already exists in the database.',
       });
