@@ -43,4 +43,8 @@ schema.path('email').validate(
   CUSTOM_VALIDATION.DUPLICATED
 );
 
+export function async hashPassword(password: string, salt = 10): Promise<string> {
+  return null
+}
+
 export const User: Model<UserModel> = mongoose.model('User', schema);
