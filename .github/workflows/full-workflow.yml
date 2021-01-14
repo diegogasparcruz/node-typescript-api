@@ -41,5 +41,5 @@ jobs:
       - name: Deployment
         if: github.ref == 'refs/heads/master'
         run: git remote add umbler ssh://git@kamino.deploy.umbler.com:9922/j7r0yx2e/diego-surf-forecast-com.git && git push umbler master
-        end:
+        env:
           CI: true
