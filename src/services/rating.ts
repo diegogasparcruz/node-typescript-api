@@ -34,11 +34,11 @@ export class Rating {
   }
 
   public getRatingBasedOnWindAndWavePositions(
-    wavePosition: GeoPosition,
-    windPosition: GeoPosition
+    waveDirection: GeoPosition,
+    windDirection: GeoPosition
   ): number {
-    if (wavePosition === windPosition) return 1;
-    else if (this.isWindOffShore(wavePosition, windPosition)) {
+    if (waveDirection === windDirection) return 1;
+    else if (this.isWindOffShore(waveDirection, windDirection)) {
       return 5;
     }
     return 3;
@@ -87,21 +87,21 @@ export class Rating {
   }
 
   private isWindOffShore(
-    wavePosition: GeoPosition,
-    windPosition: GeoPosition
+    waveDirection: GeoPosition,
+    windDirection: GeoPosition
   ): boolean {
     return (
-      (wavePosition === GeoPosition.N &&
-        windPosition === GeoPosition.S &&
+      (waveDirection === GeoPosition.N &&
+        windDirection === GeoPosition.S &&
         this.beach.position === GeoPosition.N) ||
-      (wavePosition === GeoPosition.S &&
-        windPosition === GeoPosition.N &&
+      (waveDirection === GeoPosition.S &&
+        windDirection === GeoPosition.N &&
         this.beach.position === GeoPosition.S) ||
-      (wavePosition === GeoPosition.E &&
-        windPosition === GeoPosition.W &&
+      (waveDirection === GeoPosition.E &&
+        windDirection === GeoPosition.W &&
         this.beach.position === GeoPosition.E) ||
-      (wavePosition === GeoPosition.W &&
-        windPosition === GeoPosition.E &&
+      (waveDirection === GeoPosition.W &&
+        windDirection === GeoPosition.E &&
         this.beach.position === GeoPosition.W)
     );
   }
