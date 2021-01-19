@@ -178,7 +178,14 @@
         },
         "responses": {
           "201": {
-            "description": "The Beach has been created!"
+            "description": "The Beach has been created!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BeachCreatedResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Error validating the beach data.",
@@ -203,6 +210,22 @@
         "description": "Get the list of forecast ordered by the most ranked",
         "operationId": "getForecast",
         "parameters": [
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "schema":{
+              "$ref": "#/components/schemas/orderBy"
+            }
+          },
+          {
+            "name": "orderField",
+            "in": "query",
+            "required": false,
+            "schema":{
+              "$ref": "#/components/schemas/orderField"
+            }
+          },
           {
             "name": "x-access-token",
             "in": "header",
@@ -229,6 +252,17 @@
   },
   "components": {
     "schemas": {
+      "orderBy": {
+        "type": "string",
+        "example": "desc",
+        "enum": ["asc", "desc"],
+        "default": "desc"
+      },
+      "orderField": {
+        "type": "string",
+        "example": "rating",
+        "default": "rating"
+      },
       "jwtToken": {
         "type": "string",
         "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTdmZTQ0YzQzYWQwYjAwMThmOGQ5ZmQiLCJuYW1lIjoiV2FsZGVtYXIgTmV0byIsImVtYWlsIjoid2FsZGVtYXJudEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRsUlZjWkc5d0dIVWJXcHF2TnJNR0F1SnNoWWJTR1RLSElQL3NycDlmTlkzZENFZDBJQjN6TyIsImlhdCI6MTU4NTQ0MDUxNywiZXhwIjoxNTg1NDYwNTE3fQ.JNtzLgCKGTAU9_-QjYUNxtM7X4nMU_pPIsNXDsEM-vP"
@@ -466,6 +500,26 @@
                 "$ref": "#/components/schemas/id"
               }
             }
+          }
+        }
+      },
+      "BeachCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/beachName"
+          },
+          "lat": {
+            "$ref": "#/components/schemas/beachLat"
+          },
+          "lng": {
+            "$ref": "#/components/schemas/beachLng"
+          },
+          "position": {
+            "$ref": "#/components/schemas/beachPosition"
           }
         }
       },
