@@ -5,7 +5,7 @@ import { InternalError } from '@src/util/erros/internal-error';
 import { Rating } from './rating';
 import _ from 'lodash';
 
-export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
+export interface BeachForecast extends Omit<Beach, 'userId'>, ForecastPoint {}
 export interface TimeForecast {
   time: string;
   forecast: BeachForecast[];
